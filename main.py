@@ -35,13 +35,14 @@ def add_person():
     status = 1
 
     # Store the input in a variable.
-    person_data = (last_pk, first_name, middle_name, last_name, suffix_name, e_mail, status)
+    person_data = (last_pk, first_name, middle_name, last_name, suffix_name,
+                   e_mail, status)
 
     # Connect and insert the data into the person table.
     with sqlite3.connect('skeevy.db') as connection:
         cursor = connection.cursor()
         cursor.execute("INSERT INTO person VALUES(?, ?, ?, ?, ?, ?, ?);",
-            person_data)
+                       person_data)
         connection.commit()
 
 
