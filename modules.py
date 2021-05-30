@@ -3,6 +3,7 @@ Modules for the skeevy application.
 """
 import sqlite3
 
+
 def add_person():
     """Prompts the user for their information and
     inserts it into the database."""
