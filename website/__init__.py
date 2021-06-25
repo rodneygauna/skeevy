@@ -9,6 +9,7 @@
 # ------------------------------------------------------------------------------
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from os import path
 
 # ------------------------------------------------------------------------------
 # Database Global Variables
@@ -30,17 +31,34 @@ def read_secret_key():
 secret_key = read_secret_key()
 
 
+# ------------------------------------------------------------------------------
+# Application initialization
+# ------------------------------------------------------------------------------
 def create_app():
     '''Initializes  the application using Flask'''
     app = Flask(__name__)
+    # Flask secret key configuration
     app.config['SECRET_KEY'] = secret_key
+    # Flask and SQLAlchemy database configuration
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
     db.init_app(app)
 
+    # Import views and auth routes
     from .views import views
     from .auth import auth
 
+    # Blueprint routing
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
 
+    # Check if database exists; if not, create database
+    from .models import User, Pet
+    create_database(app)
+
     return app
+
+
+def create_database(app):
+    if not path.exists('website/' + DB_NAME):
+        db.create_all(app=app)
+        print('Created database!')
