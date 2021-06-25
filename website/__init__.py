@@ -51,13 +51,16 @@ def create_app():
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
 
-    # Check if database exists; if not, create database
+    # Check if database exists; if not, create database and tables (as classes)
     from .models import User, Pet
     create_database(app)
 
     return app
 
 
+# ------------------------------------------------------------------------------
+# Database initialization
+# ------------------------------------------------------------------------------
 def create_database(app):
     if not path.exists('website/' + DB_NAME):
         db.create_all(app=app)
