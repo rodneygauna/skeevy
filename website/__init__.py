@@ -1,10 +1,25 @@
+'''
+    File name: __init__.py
+    Author: Rodney Gauna
+    Date created: 2021-06-24
+'''
+
+# ------------------------------------------------------------------------------
+# Imports
+# ------------------------------------------------------------------------------
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
+# ------------------------------------------------------------------------------
+# Database Global Variables
+# ------------------------------------------------------------------------------
 db = SQLAlchemy()
 DB_NAME = 'database.db'
 
 
+# ------------------------------------------------------------------------------
+# Read Secret Key from the secretkey.txt file
+# ------------------------------------------------------------------------------
 def read_secret_key():
     '''Open text file, read the secret key and returns it'''
     with open("secretkey.txt", "r") as r:

@@ -1,20 +1,44 @@
+'''
+    File name: auth.py
+    Author: Rodney Gauna
+    Date created: 2021-06-24
+'''
+
+
+# ------------------------------------------------------------------------------
+# Imports
+# ------------------------------------------------------------------------------
 from flask import Blueprint, render_template, request, flash
 
+# ------------------------------------------------------------------------------
+# Global Variables
+# ------------------------------------------------------------------------------
 auth = Blueprint('auth', __name__)
 
 
-@auth.route('/login')
+# ------------------------------------------------------------------------------
+# Routes
+# ------------------------------------------------------------------------------
+@auth.route('/login', methods=['GET', 'POST'])
 def login():
-    return render_template("login.html", methods=['GET', 'POST'])
+    '''Login page'''
+    if request.method == 'POST':
+        email = request.form.get('email')
+        password1 = request.form.get('password')
+
+    return render_template("login.html")
 
 
 @auth.route('/logout')
 def logout():
+    '''Logout page'''
     return render_template("/")
 
 
 @auth.route('/signup', methods=['GET', 'POST'])
 def signup():
+    '''Sign up page'''
+    # Gets the data from the form and saves as variables
     if request.method == 'POST':
         email = request.form.get('email')
         firstname = request.form.get('firstname')
@@ -22,6 +46,7 @@ def signup():
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
 
+        # Validation logic for the submit form
         if len(email) < 4:
             flash(' Email must be greater than 3 characters', category='error')
         elif len(firstname) < 2:
