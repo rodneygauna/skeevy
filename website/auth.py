@@ -45,14 +45,15 @@ def login():
             flash(' Account not found. Check your email and try again.',
                   category='error')
 
-    return render_template("login.html")
+    return render_template("login.html", user=current_user)
 
 
 @auth.route('/logout')
 @login_required
 def logout():
-    '''Logout page'''
+    '''Logout operation'''
     logout_user()
+    flash(' Logged out successfully.', category='success')
     return redirect(url_for('auth.login'))
 
 
@@ -98,4 +99,4 @@ def signup():
             login_user(user, remember=True)
             return redirect(url_for('views.home'))
 
-    return render_template("signup.html")
+    return render_template("signup.html", user=current_user)
