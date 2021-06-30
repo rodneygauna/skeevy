@@ -19,7 +19,7 @@ from sqlalchemy.sql import func
 class Pet(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(150))
-    dob = db.Column(db.Date)
+    dob = db.Column(db.String)
     createdate = db.Column(db.DateTime(timezone=True), default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
