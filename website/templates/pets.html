@@ -1,17 +1,11 @@
 {% extends "base.html" %}
-{% block title %}Skeevy - Login{% endblock %}
-
+{% block title %}Skeevy - Pets{% endblock %}
 {% block content %}
 <form method="POST">
-  <h3>Login</h3>
+  <h3>Add Pet</h3>
   <div class="mb-3">
-    <label for="email" class="form-label">Email</label>
-    <input
-      type="email"
-      class="form-control"
-      id="email"
-      name="email"
-    />
+    <label for="name" class="form-label">Pet's Name</label>
+    <input type="text" class="form-control" id="name" name="name" />
   </div>
   <div class="mb-3">
     <label for="password" class="form-label">Password</label>
