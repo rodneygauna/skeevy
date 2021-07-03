@@ -7,7 +7,7 @@
 # ------------------------------------------------------------------------------
 # Imports
 # ------------------------------------------------------------------------------
-from flask import Blueprint, render_template, request, flash
+from flask import Blueprint, render_template, request, flash, redirect, url_for
 from flask_login import login_required, current_user
 from .models import Pet
 from . import db
@@ -28,9 +28,15 @@ def home():
     return render_template("home.html", user=current_user)
 
 
-@views.route('/pets', methods=['GET', 'POST'])
+@views.route('/pets', methods=['GET'])
 @login_required
 def pets():
+    return render_template("pets.html", user=current_user)
+
+
+@views.route('/add_pet', methods=['GET', 'POST'])
+@login_required
+def add_pet():
     if request.method == 'POST':
         name = request.form.get('name')
         dob = request.form.get('dob')
@@ -40,6 +46,7 @@ def pets():
         new_pet = Pet(name=name, dob=dob, user_id=current_user.id)
         db.session.add(new_pet)
         db.session.commit()
-        flash(' Pet added!', category='success')
+        flash(' Pet added successfully!', category='success')
+        return redirect(url_for('views.pets'))
 
-    return render_template("pets.html", user=current_user)
+    return render_template("add_pet.html", user=current_user)

@@ -1,18 +1,30 @@
 {% extends "base.html" %}
 {% block title %}Skeevy - Pets{% endblock %}
 {% block content %}
-<form method="POST">
-  <h3>Add Pet</h3>
-  <div class="mb-3">
-    <label for="name" class="form-label">Pet's Name</label>
-    <input type="text" class="form-control" id="name" name="name" />
+<h3>Pets</h3>
+</br>
+<a class="btn btn-primary" href="/add_pet" role="button">Add New Pet</a>
+</br></br>
+<div class="row">
+  {% for p in user.pets %}
+  <div class="col-sm-6">
+    <div class="card mb-3" style="max-width: 540px;">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src="https://github.com/rodneygauna.png" class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">{{ p.name }}</h5>
+            <p class="card-text">{{ p.dob }}</p>
+          </div>
+          <div class="card-body">
+            <a href="#" class="btn btn-primary">Edit {{ p.name }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="mb-3">
-    <label for="dob" class="form-label">Pet's Date of Birth</label>
-    <input type="date" class="form-control" id="dob" name="dob" />
-  </div>
-  <div class="d-grid gap-2 d-md-flex">
-    <button type="submit" class="btn btn-primary">Add Pet</button>
-  </div>
-</form>
+  {% endfor %}
+</div>
 {% endblock %}
