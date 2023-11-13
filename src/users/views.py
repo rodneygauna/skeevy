@@ -148,13 +148,13 @@ def complete_login():
         login_user(user)
         session.pop('short_code', None)
 
-        next = request.args.get('next')
+        next_page = request.args.get('next')
 
-        if next is None or not next[0] == '/':
-            next = url_for('core.index')
+        if next_page is None or not next_page.startswith('/'):
+            next_page = url_for('core.index')
 
         flash('Login successful.', 'success')
-        return redirect(next)
+        return redirect(next_page)
 
     # If the user is not found, redirect to the login page
     flash('Login failed.', 'warning')
