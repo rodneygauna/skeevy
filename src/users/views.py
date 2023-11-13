@@ -46,7 +46,7 @@ def register_user():
     if form.validate_on_submit():
         # Check if email is already registered
         if User.query.filter_by(email=form.email.data).first():
-            flash('This email is already registered.', 'error')
+            flash('This email is already registered.', 'warning')
             return redirect(url_for('users.register_user'))
 
         # Commit the new user to the database
@@ -80,7 +80,7 @@ def login():
                 flash(
                     """Your account is inactive.
                     Please contact an administrator.""",
-                    'error')
+                    'warning')
                 return redirect(url_for('users.login'))
 
             # Generate a short code to complete the login process
@@ -102,7 +102,7 @@ def login():
             # Redirect the user to the short code page
             return redirect(url_for('users.enter_code'))
 
-        flash('Invalid email or password.', 'error')
+        flash('Invalid email or password.', 'warning')
 
     return render_template('users/login.html',
                            title='Skeevy - Login',
@@ -126,7 +126,8 @@ def enter_code():
             flash('Short Code (2FA) is correct. Completing login.', 'success')
             return redirect(url_for('users.complete_login'))
         else:
-            flash('Short Code (2FA) is incorrect. Please try again.', 'error')
+            flash('Short Code (2FA) is incorrect. Please try again.',
+                  'warning')
 
     return render_template('users/short_code.html',
                            title='Skeevy - Short Code (2FA)',
@@ -156,7 +157,7 @@ def complete_login():
         return redirect(next)
 
     # If the user is not found, redirect to the login page
-    flash('Login failed.', 'error')
+    flash('Login failed.', 'warning')
     return redirect(url_for('users.login'))
 
 
