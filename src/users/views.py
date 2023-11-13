@@ -19,13 +19,13 @@ from flask_login import (
     logout_user,
     current_user,
 )
+from flask_mail import Message
 from src.users.forms import (
     RegisterUserForm,
     LoginForm,
     ChangePasswordForm,
     ShortCodeForm,
 )
-from flask_mail import Message
 from src import db, mail
 from src.models import (
     User,
