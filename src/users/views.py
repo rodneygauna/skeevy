@@ -27,9 +27,7 @@ from src.users.forms import (
     ShortCodeForm,
 )
 from src import db, mail
-from src.models import (
-    User,
-)
+from .models import User
 
 
 # Blueprint Configuration

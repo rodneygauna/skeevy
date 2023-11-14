@@ -6,9 +6,8 @@ from faker import Faker
 from flask import Blueprint
 from werkzeug.security import generate_password_hash
 from src import db
-from src.models import (
-    User,
-)
+from src.users.models import User
+
 
 # Faker instance
 faker = Faker()
@@ -43,11 +42,11 @@ def db_seed():
     data = []
 
     # Create users
-    for i in range(1, max_range+1):
+    for _ in range(1, max_range+1):
         data.append(
             User(
                 email=faker.email(),
-                password_hash=generate_password_hash("password"),
+                password_hash=generate_password_hash("password")
             )
         )
 

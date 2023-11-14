@@ -31,6 +31,11 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + database_path
 db = SQLAlchemy(app)
 
 
+# Import models
+from src.pets.models import *
+from src.users.models import *
+
+
 # Function to create the database if it doesn't exist
 def create_database_if_not_exists():
     """Create the database if it doesn't exist."""
@@ -50,7 +55,7 @@ def create_database_if_not_exists():
 
 
 # Login manager initialization
-login_manager = LoginManager()
+from src.login import login_manager
 login_manager.init_app(app)
 login_manager.login_view = "users.login"
 
