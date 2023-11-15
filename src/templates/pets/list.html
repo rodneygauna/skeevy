@@ -1,0 +1,29 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Pets</h1>
+<div class="row mb-3">
+  <div class="col">
+    <a href="{{ url_for('pets.add_pet') }}" class="btn btn-primary">Add Pet</a>
+  </div>
+</div>
+{% for pet in pets %}
+<div class="row mb-3">
+  <div class="card">
+    <img src="..." class="card-img-top" alt="..." />
+    <div class="card-body">
+      <h5 class="card-title">{{ pet.name }}</h5>
+      <p class="card-text">
+        {{ pet.name }} was born on {{ pet.date_of_birth.strftime('%B %d, %Y') }}
+        and is a {{ pet.breed }} {{ pet.pet_type }}.
+      </p>
+      <a href="#" class="btn btn-primary">View</a>
+      <a
+        href="{{ url_for('pets.edit_pet', pet_id=pet.id) }}"
+        class="btn btn-secondary"
+        >Edit</a
+      >
+    </div>
+  </div>
+</div>
+{% else %}
+<p>No pets found.</p>
+{% endfor %} {% endblock content %}

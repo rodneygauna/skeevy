@@ -1,0 +1,15 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Add/Edit Pet</h1>
+<form method="post">
+  {{ form.hidden_tag() }}
+  <div class="form-group mb-3">
+    {% for field in form if field.type != "SubmitField" and field.type !=
+    "CSRFTokenField" %}
+    <div class="form-group">
+      {{ field.label(class="form-label") }} {{ field(class="form-control") }}
+    </div>
+    {% endfor %}
+  </div>
+  {{ form.submit(class="btn btn-primary") }}
+</form>
+{% endblock content %}

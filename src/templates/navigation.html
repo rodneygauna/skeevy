@@ -21,6 +21,11 @@
         <li class="nav-item">
           <a class="nav-link" href="{{ url_for('core.index') }}">Home</a>
         </li>
+        {% if current_user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('pets.list_pets') }}">Pets</a>
+        </li>
+        {% endif %}
       </ul>
       <div class="d-flex justify-content-end">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
