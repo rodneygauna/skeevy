@@ -24,7 +24,7 @@ POSTGRES_DB = os.getenv("POSTGRES_DB")
 app = Flask(__name__)
 app.config["SECRET_KEY"] = SECRET_KEY
 # Database configuration using PostgreSQL
-app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DB_URL")
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DB_URL")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
 
 
