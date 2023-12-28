@@ -16,15 +16,16 @@ from flask_mail import Mail
 load_dotenv()
 SECRET_KEY = os.getenv("SECRET_KEY")
 EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
-
+POSTGRES_USER = os.getenv("POSTGRES_USER")
+POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD")
+POSTGRES_DB = os.getenv("POSTGRES_DB")
 
 # Flask initialization
 app = Flask(__name__)
 app.config["SECRET_KEY"] = SECRET_KEY
-# Database configuration
-database_path = os.path.join(app.root_path, 'data', 'database.db')
-os.makedirs(os.path.join(app.root_path, 'data'), exist_ok=True)
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + database_path
+# Database configuration using PostgreSQL
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DB_URL")
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 
 # Database initialization

@@ -30,7 +30,7 @@ class User(BaseModel, UserMixin):
     __tablename__ = "users"
 
     email = db.Column(db.String(255), unique=True, index=True)
-    password_hash = db.Column(db.String(128))
+    password_hash = db.Column(db.String(255))
     profile_image = db.Column(
         db.String(255), nullable=False, default="default_profile.jpg"
     )
