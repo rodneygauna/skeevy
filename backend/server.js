@@ -1,10 +1,20 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
 
 dotenv.config({ path: "./.env" });
 
 const app = express();
+
+// Middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+
+// Routes
+import userRoutes from "./routes/userRoutes.js";
+app.use("/api/users", userRoutes);
 
 // Start server and connect to MongoDB
 const PORT = process.env.PORT || 3001;
