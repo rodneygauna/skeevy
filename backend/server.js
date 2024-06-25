@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
+import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 
 dotenv.config({ path: "./.env" });
 
@@ -15,6 +16,10 @@ app.use(cookieParser());
 // Routes
 import userRoutes from "./routes/userRoutes.js";
 app.use("/api/users", userRoutes);
+
+// Error handling
+app.use(notFound);
+app.use(errorHandler);
 
 // Start server and connect to MongoDB
 const PORT = process.env.PORT || 3001;
