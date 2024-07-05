@@ -12,5 +12,5 @@ class Pet(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String, index=True)
 
-    # user_id = Column(Integer, ForeignKey("users.id"))
-    # user = relationship("User", back_populates="pets")
+    user_id = Column(Integer, ForeignKey("users.id"))
+    user = relationship("User", back_populates="pets")
