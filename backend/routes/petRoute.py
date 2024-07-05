@@ -1,10 +1,10 @@
 """backend/routes/petRoute.py"""
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
-from schemas.petSchema import PetCreate
 from models.petModel import Pet as PetModel
-from controllers.petController import create_pet
 from models.database import get_db
+from controllers.petController import create_pet
+from schemas.petSchema import PetCreate
 
 
 router = APIRouter(
