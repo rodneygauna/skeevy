@@ -130,6 +130,7 @@ ENV/
 env.bak/
 venv.bak/
 venv-skeevy
+.venv-skeevy
 
 # Spyder project settings
 .spyderproject
