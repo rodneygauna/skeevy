@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
+from models.userModel import User
 from database import init_db
 
 @asynccontextmanager
