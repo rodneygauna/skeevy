@@ -1,12 +1,15 @@
+"""backend/main.py"""
 from fastapi import FastAPI
-from contextlib import asynccontextmanager
-from models.userModel import User
-from database import init_db
 
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    init_db()
-    yield
+from routes.petRoute import router as pet_router
+from models.database import engine, Base
+from models import *
 
-app = FastAPI(lifespan=lifespan)
 
+Base.metadata.create_all(bind=engine)
+
+
+app = FastAPI()
+
+
+app.include_router(pet_router)
