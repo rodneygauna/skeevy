@@ -5,6 +5,7 @@ from pydantic import BaseModel
 class PetBase(BaseModel):
     """Pet base schema"""
     name: str
+    user_id: int
 
 
 class PetCreate(PetBase):
@@ -15,7 +16,6 @@ class PetCreate(PetBase):
 class Pet(PetBase):
     """Pet schema"""
     id: int
-    user_id: int
 
     class Config:
         """Pydantic configuration"""
