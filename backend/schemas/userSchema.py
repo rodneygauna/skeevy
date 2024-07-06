@@ -1,11 +1,11 @@
 """backend/schemas/userSchema.py"""
 from pydantic import BaseModel, EmailStr
+from .petSchema import Pet
 
 
 class UserBase(BaseModel):
     """User base schema"""
     email: EmailStr
-    password_hash: str
     first_name: str
     last_name: str
     phone_number: int
@@ -13,12 +13,14 @@ class UserBase(BaseModel):
 
 class UserCreate(UserBase):
     """User create schema"""
-    pass
+    password: str
 
 
 class User(UserBase):
     """User schema"""
     id: int
+    is_active: bool
+    pets: list[Pet] = []
 
     class Config:
         """Pydantic configuration"""

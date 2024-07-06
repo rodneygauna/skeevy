@@ -15,6 +15,7 @@ class PetCreate(PetBase):
 class Pet(PetBase):
     """Pet schema"""
     id: int
+    user_id: int
 
     class Config:
         """Pydantic configuration"""

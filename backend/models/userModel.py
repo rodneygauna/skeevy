@@ -1,8 +1,8 @@
 """backend/models/userModel.py"""
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, Boolean
 from sqlalchemy.orm import relationship
 
-from models.database import Base
+from .database import Base
 
 
 class User(Base):
@@ -11,9 +11,10 @@ class User(Base):
 
     id = Column(Integer, primary_key=True)
     email = Column(String, unique=True, index=True)
-    password_hash = Column(String)
+    password = Column(String)
     first_name = Column(String)
     last_name = Column(String)
     phone_number = Column(Integer)
+    is_active = Column(Boolean, default=True)
 
     pets = relationship("Pet", back_populates="user")
